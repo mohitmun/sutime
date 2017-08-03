@@ -23,7 +23,7 @@ def count_words_at_url(query, callback_url, callback_data):
   result = {}
   result["callback_data"] = callback_data
   result["sutime_result"] = sutime_result
-  cmd = "curl -X POST -d '{}' '{}' ".format(json.dumps(result), callback_url)
+  cmd = "curl -X POST -H 'Content-Type: application/json' -d '{}' '{}' ".format(json.dumps(result), callback_url)
   print(cmd)
   res = os.popen(cmd)
   return res 
