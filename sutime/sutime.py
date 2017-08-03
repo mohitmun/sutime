@@ -64,7 +64,7 @@ class SUTime(object):
     def _start_jvm(self):
         if jpype.isJVMStarted() is not 1:
             jpype.startJVM(
-                jpype.getDefaultJVMPath(), "-mx500m", 
+                jpype.getDefaultJVMPath(), "-mx1g", 
                 '-Djava.class.path={classpath}'.format(
                     classpath=self._classpath)
             )
