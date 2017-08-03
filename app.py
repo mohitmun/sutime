@@ -1,6 +1,5 @@
 from flask import Flask
 from flask import request
-import example
 import os
 import json
 from sutime import SUTime
