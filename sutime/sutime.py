@@ -5,7 +5,7 @@ import socket
 import threading
 import json
 
-socket.setdefaulttimeout(15)
+# socket.setdefaulttimeout(15)
 
 
 class SUTime(object):
@@ -64,7 +64,7 @@ class SUTime(object):
     def _start_jvm(self):
         if jpype.isJVMStarted() is not 1:
             jpype.startJVM(
-                jpype.getDefaultJVMPath(), "-mx100m", 
+                jpype.getDefaultJVMPath(), "-mx500m", 
                 '-Djava.class.path={classpath}'.format(
                     classpath=self._classpath)
             )

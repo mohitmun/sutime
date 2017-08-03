@@ -28,7 +28,7 @@ public class SUTimeWrapper {
                 "customAnnotatorClass.sutime", "edu.stanford.nlp.time.TimeAnnotator",
                 "sutime.markTimeRanges", markTimeRanges ? "true" : "false",
                 "sutime.includeRange", includeRange ? "true" : "false",
-                "annotators", "tokenize, ssplit, pos, lemma, ner, sutime",
+                "annotators", "sutime",
                 "ner.useSUTime", "true"
         );
         this.pipeline = new StanfordCoreNLP(this.properties);
