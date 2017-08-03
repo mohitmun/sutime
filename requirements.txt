@@ -1,3 +1,5 @@
 sutime==0.2.0
 Flask
 gunicorn
+rq
+redis

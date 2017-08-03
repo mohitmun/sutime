@@ -5,9 +5,11 @@ import json
 import sys
 import json
 from rq import Queue
-from worker import conn
+# from worker import conn
+import redis
 from utils import count_words_at_url
-
+redis_url = os.getenv('REDISTOGO_URL', 'redis://localhost:6379')
+conn = redis.from_url(redis_url)
 q = Queue(connection=conn)
 app = Flask(__name__)
 
