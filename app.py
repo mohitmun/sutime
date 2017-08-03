@@ -1,11 +1,10 @@
 from flask import Flask
-from datetime import datetime
+from flask import request
 import example
 app = Flask(__name__)
 import json
 @app.route('/')
 def homepage():
-  the_time = datetime.now().strftime("%A, %d %b %Y %l:%M %p")
   q = request.args.get('q')
   return json.dumps(example.parse(q))
 
