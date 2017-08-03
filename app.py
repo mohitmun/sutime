@@ -2,17 +2,22 @@ from flask import Flask
 from flask import request
 import os
 import json
-from sutime import SUTime
 import sys
 import json
+from rq import Queue
+from worker import conn
+from utils import count_words_at_url
+
+q = Queue(connection=conn)
 app = Flask(__name__)
-jar_files = os.path.join(os.path.dirname(__file__), 'jars')
-sutime = SUTime(jars=jar_files, mark_time_ranges=False)
+
 @app.route('/')
 def homepage():
-  q = request.args.get('q')
-  return json.dumps(parse(q))
-def parse(s):
-  return sutime.parse(s)
+  query = request.args.get('q')
+  callback_data = request.args.get('callback_data')
+  callback_url  = request.args.get('callback_url')
+  result = q.enqueue(count_words_at_url, query, callback_url, callback_data)
+  return json.dumps({})
+
 if __name__ == '__main__':
   app.run(debug=True, use_reloader=True)
