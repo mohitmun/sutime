@@ -26,7 +26,7 @@ def count_words_at_url(query, callback_url, callback_data, random_id):
   result["callback_data"] = callback_data
   result["sutime_result"] = sutime_result
   conn = redis.from_url(redis_url)
-  conn.set(random_id, sutime_result)
+  conn.set(str(random_id), str(sutime_result))
   print("result set")
   cmd = "curl -X POST -H 'Content-Type: application/json' -d '{}' '{}' ".format(json.dumps(result), callback_url)
   print(cmd)
