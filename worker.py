@@ -23,6 +23,8 @@ if __name__ == '__main__':
       query = args[0]
       callback_url = args[1]
       callback_data = args[2]
+      random_id = args[3]
+      redis_url = args[4]
       print("query")
       print(query)
       print("callback_url")
@@ -33,6 +35,9 @@ if __name__ == '__main__':
       result = {}
       result["callback_data"] = callback_data
       result["sutime_result"] = sutime_result
+      conn = redis.from_url(redis_url)
+      conn.set(str(random_id), str(sutime_result))
+      print("result set")
       cmd = "curl -X POST -H 'Content-Type: application/json' -d '{}' '{}' ".format(json.dumps(result), callback_url)
       print(cmd)
       os.popen(cmd).read()
