@@ -20,7 +20,7 @@ def homepage():
   callback_data = request.args.get('callback_data')
   callback_url  = request.args.get('callback_url')
   random_id = randint(0,10**10)
-  result = q.enqueue(count_words_at_url, query, callback_url, callback_data, random_id)
+  result = q.enqueue(count_words_at_url, query, callback_url, callback_data, random_id, redis_url)
   return json.dumps({'id': random_id})
 
 if __name__ == '__main__':

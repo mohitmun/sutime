@@ -5,7 +5,7 @@ import os
 
 from sutime import SUTime
 
-def count_words_at_url(query, callback_url, callback_data, random_id):
+def count_words_at_url(query, callback_url, callback_data, random_id, redis_url):
   # from worker import sutime
   # jar_files = os.path.join(os.path.dirname(__file__), 'jars')
   # sutime = SUTime(jars=jar_files, mark_time_ranges=False)
@@ -14,10 +14,10 @@ def count_words_at_url(query, callback_url, callback_data, random_id):
   jar_files = os.path.join(os.path.dirname(__file__), 'jars')
   sutime = SUTime(jars=jar_files, mark_time_ranges=False)
   # print(sutime)
-  redis_url = os.getenv('REDIS_URL', 'redis://localhost:6379')
+  # redis_url = os.getenv('REDIS_URL', 'redis://localhost:6379')
   print("query")
   print(query)
-  print("callback_url")
+  print("callback_url" + redis_url)
   print(callback_url)
   print("callback_data")
   print(callback_data)
