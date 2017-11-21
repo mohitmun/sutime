@@ -5,6 +5,7 @@ import json
 import sys
 import json
 from rq import Queue
+from random import randint
 # from worker import conn
 import redis
 from utils import count_words_at_url
@@ -18,8 +19,9 @@ def homepage():
   query = request.args.get('q')
   callback_data = request.args.get('callback_data')
   callback_url  = request.args.get('callback_url')
-  result = q.enqueue(count_words_at_url, query, callback_url, callback_data)
-  return json.dumps({})
+  random_id = randint(0,10**10)
+  result = q.enqueue(count_words_at_url, query, callback_url, callback_data, random_id)
+  return json.dumps({'id': random_id})
 
 if __name__ == '__main__':
   app.run(debug=True, use_reloader=True)
