@@ -26,11 +26,12 @@ def homepage():
 @app.route('/get')
 def get_data():
   id_ = request.args.get('id')
+
   # callback_data = request.args.get('callback_data')
   # callback_url  = request.args.get('callback_url')
   # random_id = randint(0,10**10)
   # result = q.enqueue(count_words_at_url, query, callback_url, callback_data, random_id, redis_url)
-  return json.dumps({'id': id_, 'result': conn.get(id_)})
+  return json.dumps({'id': id_, 'result': conn.get(id_).decode('utf-8')})
 
 if __name__ == '__main__':
   app.run(debug=True, use_reloader=True)
