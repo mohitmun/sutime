@@ -24,7 +24,7 @@ def homepage():
   return json.dumps({'id': random_id})
 
 @app.route('/get')
-def homepage():
+def get_data():
   id_ = request.args.get('id')
   # callback_data = request.args.get('callback_data')
   # callback_url  = request.args.get('callback_url')
